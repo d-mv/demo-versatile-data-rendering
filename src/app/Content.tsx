@@ -28,8 +28,6 @@ export function Content() {
   }, []);
 
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log('hello');
     // @ts-ignore
     globalThis.interval = handleIntervalControl;
 

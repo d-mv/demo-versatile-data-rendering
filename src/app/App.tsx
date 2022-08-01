@@ -2,9 +2,6 @@ import { defaultTheme, Grid, Provider } from '@adobe/react-spectrum';
 
 import { Content } from './Content';
 export function App() {
-  // eslint-disable-next-line no-console
-  console.log('running');
-
   return (
     <Provider theme={defaultTheme}>
       <Grid
