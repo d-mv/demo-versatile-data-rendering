@@ -7,8 +7,8 @@ export function App() {
       <Grid
         areas={['header', 'content', 'footer']}
         columns={['3fr']}
-        rows={['size-900', 'auto', 'size-1000']}
-        height='size-6000'
+        rows={['size-900', 'auto']}
+        height='74rem'
         gap='size-100'
       >
         <Content />

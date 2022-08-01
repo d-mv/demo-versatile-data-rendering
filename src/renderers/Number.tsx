@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import { makeMatchObject } from '../tools';
 import classes from './Number.module.css';
 
@@ -17,12 +18,15 @@ const renderNumber = makeMatchObject(
 export interface NumberProps {
   value: number;
   as: string;
+  style?: CSSProperties
+  valueOnly?: boolean
 }
-export function Number({ value, as }: NumberProps) {
-  if (typeof value!== 'number') return <></>
+
+export function Number({ value, as, style, valueOnly }: NumberProps) {
+  if (typeof value !== 'number') return <></>
+  let message = renderNumber[as](value);
+  if (!valueOnly) message = `${as}: ${message}`;
   return (
-    <div className={classes.container}>{`${as}: ${renderNumber[as](
-      value
-    )}`}</div>
+    <div className={classes.container} style={style}>{message}</div>
   );
 }

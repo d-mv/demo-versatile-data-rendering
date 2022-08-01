@@ -1,19 +1,29 @@
 import { Flex, Text } from '@adobe/react-spectrum';
 import { Suspense } from 'react';
+
 import { RenderContext, RenderContextType } from '../context';
-import { Numbers, Chips } from '.';
-import { makeMatchObject } from '../tools';
+import { Numbers, Chips, Complex } from '.';
+import { makeMatchObject, map } from '../tools';
 
 export interface RenderListProps {
   data: RenderContextType;
 }
 
-const renderers = makeMatchObject({ chips: Chips, numbers: Numbers }, () => (
-  <>Have data, but no render function</>
-));
+const renderers = makeMatchObject(
+  { chips: Chips, numbers: Numbers, complex: Complex },
+  () => <>Have data, but no render function</>
+);
 export function RenderList({ data }: RenderListProps) {
-  // eslint-disable-next-line no-console
-  console.log(data);
+  function renderComponent(key: string) {
+    const RenderComponent = renderers[key];
+
+    return (
+      <Suspense key={key} fallback={<Text>Loading...</Text>}>
+        <RenderComponent />
+      </Suspense>
+    );
+  }
+
   return (
     <RenderContext.Provider value={data}>
       <Flex
@@ -23,17 +33,8 @@ export function RenderList({ data }: RenderListProps) {
         justifyContent='start'
         gap='size-200'
       >
-        {Object.keys(data).map((key) => {
-          const RenderComponent = renderers[key];
-          return (
-            <Suspense key={key} fallback={<Text>Loading...</Text>}>
-              <RenderComponent />
-            </Suspense>
-          );
-        })}
+        {map(Object.keys(data), renderComponent)}
       </Flex>
     </RenderContext.Provider>
   );
 }
-
-//   <Suspense fallback={<div>Loading...</div>}></Suspense>

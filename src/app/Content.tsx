@@ -10,15 +10,20 @@ let interval: NodeJS.Timer | undefined;
 export function Content() {
   const [data, setData] = useState(generateData());
 
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log(data);
+  }, [data]);
+
   function handleOnClick() {
     setData(generateData());
   }
 
-  const handleIntervalControl = useCallback((onOff = true) => {
+  const handleIntervalControl = useCallback((onOff = true, int = 2000) => {
     if (onOff && !interval) {
       // eslint-disable-next-line no-console
-      console.log('Auto-click is ON');
-      interval = setInterval(() => handleOnClick(), 2000);
+      console.log(`Auto-click is ON, interval is ${int / 1000}s`);
+      interval = setInterval(() => handleOnClick(), int);
     } else if (!onOff && interval) {
       // eslint-disable-next-line no-console
       console.log('Auto-click is OFF');
@@ -30,6 +35,7 @@ export function Content() {
   useEffect(() => {
     // @ts-ignore
     globalThis.interval = handleIntervalControl;
+    // handleIntervalControl(true, 4000);
 
     return () => {
       if (interval) {
@@ -53,7 +59,6 @@ export function Content() {
           <RenderList data={data} />
         </div>
       </View>
-      <View backgroundColor='gray-100' gridArea='footer' />
     </>
   );
 }
