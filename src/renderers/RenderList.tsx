@@ -1,4 +1,4 @@
-import { Flex, Text as SpectrumText } from '@adobe/react-spectrum';
+import { Flex, Text } from '@adobe/react-spectrum';
 import { Suspense } from 'react';
 import { RenderContext, RenderContextType } from '../context';
 import { Numbers, Chips } from '.';
@@ -16,12 +16,18 @@ export function RenderList({ data }: RenderListProps) {
   console.log(data);
   return (
     <RenderContext.Provider value={data}>
-      <Flex direction='column' alignContent='start' height='single-line-height' justifyContent='start' gap='size-200'>
+      <Flex
+        direction='column'
+        alignContent='start'
+        height='single-line-height'
+        justifyContent='start'
+        gap='size-200'
+      >
         {Object.keys(data).map((key) => {
           const RenderComponent = renderers[key];
           return (
-            <Suspense fallback={<SpectrumText>Loading...</SpectrumText>}>
-              <RenderComponent key={key} />
+            <Suspense key={key} fallback={<Text>Loading...</Text>}>
+              <RenderComponent />
             </Suspense>
           );
         })}

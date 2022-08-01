@@ -1,6 +1,6 @@
 import { createContext } from 'use-context-selector';
 
-export interface RenderContextType {
+export interface RenderContextType extends Record<string, unknown> {
   chips: string[];
   numbers: { value: number; as: string }[];
 }
