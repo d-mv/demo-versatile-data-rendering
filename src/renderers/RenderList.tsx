@@ -2,7 +2,7 @@ import { Flex, Text } from '@adobe/react-spectrum';
 import { Suspense } from 'react';
 
 import { RenderContext, RenderContextType } from '../context';
-import { Numbers, Chips, Complex } from '.';
+import { Numbers, Chips, Table } from '.';
 import { makeMatchObject, map } from '../tools';
 
 export interface RenderListProps {
@@ -10,9 +10,10 @@ export interface RenderListProps {
 }
 
 const renderers = makeMatchObject(
-  { chips: Chips, numbers: Numbers, complex: Complex },
+  { chips: Chips, numbers: Numbers, complex: Table },
   () => <>Have data, but no render function</>
 );
+
 export function RenderList({ data }: RenderListProps) {
   function renderComponent(key: string) {
     const RenderComponent = renderers[key];

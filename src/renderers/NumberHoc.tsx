@@ -1,7 +1,7 @@
 import { CSSProperties } from 'react';
 import { useContextSelector } from 'use-context-selector';
-import { ComplexContext } from '../context';
 
+import { ComplexContext } from '../context';
 import { Number } from './Number';
 
 export default function NumberHoc() {

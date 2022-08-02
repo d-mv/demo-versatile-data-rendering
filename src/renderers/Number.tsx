@@ -1,4 +1,6 @@
 import { CSSProperties } from 'react';
+
+import { ShowAs } from '../context';
 import { makeMatchObject } from '../tools';
 import classes from './Number.module.css';
 
@@ -8,9 +10,9 @@ const floatFormatter = Intl.NumberFormat('en-US', {
 
 const renderNumber = makeMatchObject(
   {
-    float: (value: number) => floatFormatter(value),
-    round: (value: number) => Math.round(value).toString(),
-    percent: (value: number) => `${floatFormatter(value)}%`,
+    [ShowAs.FLOAT]: (value: number) => floatFormatter(value),
+    [ShowAs.INT]: (value: number) => Math.round(value).toString(),
+    [ShowAs.PCT]: (value: number) => `${floatFormatter(value)}%`,
   },
   () => 'unknown format'
 );
@@ -23,9 +25,13 @@ export interface NumberProps {
 }
 
 export function Number({ value, as, style, valueOnly }: NumberProps) {
+
   if (typeof value !== 'number') return <></>
+
   let message = renderNumber[as](value);
+
   if (!valueOnly) message = `${as}: ${message}`;
+
   return (
     <div className={classes.container} style={style}>{message}</div>
   );

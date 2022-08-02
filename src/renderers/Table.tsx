@@ -3,10 +3,10 @@ import { Suspense } from 'react';
 import { useContextSelector } from 'use-context-selector';
 
 import { Line } from '.';
-import { Item, RenderContext } from '../context/render.context';
-import { map } from '../tools';
+import { Item, RenderContext } from '../context';
+import { ifTrue, map } from '../tools';
 
-export default function Complex() {
+export default function Table() {
   const { data } = useContextSelector(
     RenderContext,
     (context) => context.complex
@@ -28,7 +28,7 @@ export default function Complex() {
       gap='size-100'
       height='size-400'
     >
-      {map(data, renderLines)}
+      {ifTrue(data.length, () => map(data, renderLines), <></>)}
     </Flex>
   );
 }

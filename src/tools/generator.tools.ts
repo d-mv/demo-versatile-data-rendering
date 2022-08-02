@@ -83,6 +83,29 @@ function generateComplexData(): Item[] {
   return data;
 }
 
+function generateComplexDataClean(): Item[] {
+  const data: Item[] = [];
+
+  let random = Math.round(Math.random() * 20);
+  if (random > 10) random = 10;
+
+  for (let index = 0; index < random; index++) {
+    const description = faker.lorem.sentence();
+
+    const quantity = Math.round(Math.random() * 100);
+
+    const tax = Math.round(Math.random() * 10000) / 100;
+
+    data.push({
+      id: crypto.randomUUID().slice(-6),
+      description,
+      quantity,
+      tax,
+    });
+  }
+  return data;
+}
+
 function randomReduceScenario(base: Scenario): Scenario {
   const chance = Math.random();
 
@@ -139,6 +162,8 @@ function generateScenario(): Scenario {
 }
 
 export function generateData() {
+  // eslint-disable-next-line no-console
+  console.log(generateComplexDataClean())
   return {
     chips: generateDataSet<string>(faker.name.firstName),
     numbers: generateNumbersData(),
