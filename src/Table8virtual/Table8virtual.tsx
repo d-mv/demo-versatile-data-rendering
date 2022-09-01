@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
-import './Table8.css';
-
 import {
-  getCoreRowModel,
   flexRender,
+  getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { makeData } from './makeData';
+import React, { useMemo } from 'react';
 import { COLUMNS } from './data';
-import { useVirtual } from 'react-virtual';
-
-export function Table8() {
-  const data = React.useMemo(() => makeData(2000), []);
+import { makeData } from './makeData';
+import './Table8virtual.css';
+export function Table8virtual() {
+  const data = useMemo(() => makeData(10), []);
 
   const table = useReactTable({
     data,
@@ -24,40 +21,11 @@ export function Table8() {
     debugColumns: true,
   });
 
-  const tableContainerRef = React.useRef<HTMLDivElement>(null);
-
-  const { rows } = table.getRowModel();
-  const rowVirtualizer = useVirtual({
-    parentRef: tableContainerRef,
-    size: rows.length,
-    overscan: 10,
-  });
-  const { virtualItems: virtualRows, totalSize } = rowVirtualizer;
-
-  const paddingTop = virtualRows.length > 0 ? virtualRows?.[0]?.start || 0 : 0;
-  const paddingBottom =
-    virtualRows.length > 0
-      ? totalSize - (virtualRows?.[virtualRows.length - 1]?.end || 0)
-      : 0;
-
-  function getExpectedWidth() {
-    return table
-      .getHeaderGroups()
-      .map((hg) => hg.headers.map((h) => h.getSize()))[0]
-      .reduce((acc, curr) => acc + curr, 0);
-  }
-
-  const [st, setSt] = useState(getExpectedWidth());
-
-  function setter() {
-    setSt(getExpectedWidth());
-  }
-
   return (
-    <div id='container-id' className='xxx' style={{ width: `${st}px` }}>
+    <div id='container-id' className='xxx'>
       <div className='sub-cont p-2 block max-w-full overflow-x-scroll overflow-y-hidden'>
         <div className='h-2' />
-        <div ref={tableContainerRef} id='table-id' className='container'>
+        <div id='table-id' className='container'>
           <table className='w-full '>
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
@@ -82,7 +50,6 @@ export function Table8() {
                           <div
                             onMouseDown={header.getResizeHandler()}
                             onTouchStart={header.getResizeHandler()}
-                            onTouchEnd={setter}
                             className={`resizer ${
                               header.column.getIsResizing() ? 'isResizing' : ''
                             }`}
@@ -95,13 +62,7 @@ export function Table8() {
               ))}
             </thead>
             <tbody>
-              {paddingTop > 0 && (
-                <tr>
-                  <td style={{ height: `${paddingTop}px` }} />
-                </tr>
-              )}
-              {virtualRows.map((r) => {
-                const row = table.getGroupedRowModel().rows[r.index];
+              {table.getGroupedRowModel().rows.map((row) => {
                 return (
                   <tr key={row.id}>
                     {row.getVisibleCells().map((cell) => {
@@ -120,11 +81,6 @@ export function Table8() {
                   </tr>
                 );
               })}
-              {paddingBottom > 0 && (
-                <tr>
-                  <td style={{ height: `${paddingBottom}px` }} />
-                </tr>
-              )}
             </tbody>
           </table>
         </div>
