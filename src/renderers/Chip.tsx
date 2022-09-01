@@ -1,4 +1,5 @@
 import classes from './Chip.module.css';
+import React from 'react'
 
 interface ChipProps {
   value: string;

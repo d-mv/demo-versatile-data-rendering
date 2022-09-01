@@ -1,5 +1,6 @@
 import { Flex, Text } from '@adobe/react-spectrum';
 import { useContextSelector } from 'use-context-selector';
+import React from 'react'
 
 import { Item, ItemScenario, RenderContext, ShowAs } from '../context';
 import { makeMatchObject, map } from '../tools';

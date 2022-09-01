@@ -1,4 +1,5 @@
 import { CSSProperties } from 'react';
+import React from 'react'
 
 import { ShowAs } from '../context';
 import { makeMatchObject } from '../tools';

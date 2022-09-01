@@ -1,5 +1,6 @@
 import { CSSProperties } from 'react';
 import { useContextSelector } from 'use-context-selector';
+import React from 'react'
 
 import { ComplexContext } from '../context';
 

@@ -1,5 +1,6 @@
 import faker from 'faker';
 import { omit } from 'ramda';
+import {nanoid} from 'nanoid'
 
 import { Item, Scenario, ShowAs } from '../context';
 import { NumberProps } from '../renderers/Number';
@@ -71,7 +72,7 @@ function generateComplexData(): Item[] {
     const tax = Math.round(Math.random() * 10000) / 100;
 
     data.push({
-      id: crypto.randomUUID().slice(-6),
+      id: nanoid().slice(-6),
       // @ts-ignore - intentional simulation of broken data
       description: description.length < 30 ? {} : description,
       // @ts-ignore - intentional simulation of broken data
@@ -97,7 +98,7 @@ function generateComplexDataClean(): Item[] {
     const tax = Math.round(Math.random() * 10000) / 100;
 
     data.push({
-      id: crypto.randomUUID().slice(-6),
+      id: nanoid().slice(-6),
       description,
       quantity,
       tax,

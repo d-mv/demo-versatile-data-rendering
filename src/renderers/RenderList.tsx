@@ -1,5 +1,6 @@
 import { Flex, Text } from '@adobe/react-spectrum';
 import { Suspense } from 'react';
+import React from 'react'
 
 import { RenderContext, RenderContextType } from '../context';
 import { Numbers, Chips, Table } from '.';

@@ -1,3 +1,4 @@
+import React from 'react'
 import { Flex, Text } from '@adobe/react-spectrum';
 import { Suspense } from 'react';
 import { useContextSelector } from 'use-context-selector';

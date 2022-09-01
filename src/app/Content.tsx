@@ -1,7 +1,10 @@
 import { View, Flex, Button } from '@adobe/react-spectrum';
-import { useState, useCallback, useEffect } from 'react';
+import React,{ useState, useCallback, useEffect } from 'react';
+import { ReTable2 } from '../table';
+import { ReTable8 } from '../table/T.tsx';
 
-import { RenderList } from '../renderers/RenderList';
+// import { RenderList } from '../renderers/RenderList';
+// import { ReTable } from '../table/Table';
 import { generateData } from '../tools';
 import classes from './App.module.css';
 
@@ -54,9 +57,33 @@ export function Content() {
           </Button>
         </Flex>
       </View>
-      <View backgroundColor='gray-100' gridArea='content' padding='size-200'>
+      {/* <View backgroundColor='gray-100' gridArea='content' padding='size-200'>
         <div className={classes.line}>
           <RenderList data={data} />
+        </div>
+      </View> */}
+      {/* <View backgroundColor='gray-100' gridArea='content' padding='size-200'>
+        <div
+          className={classes.line}
+          style={{ display: 'flex', position: 'relative' }}
+        >
+          <ReTable />
+        </div>
+      </View> */}
+      {/* <View backgroundColor='gray-100' gridArea='content' padding='size-200'>
+        <div
+          className={classes.line}
+          style={{ display: 'flex', position: 'relative' }}
+        >
+          <ReTable2 />
+        </div>
+      </View> */}
+      <View backgroundColor='gray-100' gridArea='content' padding='size-200'>
+        <div
+          className={classes.line}
+          style={{ display: 'flex', position: 'relative', height: '100%' }}
+        >
+          <ReTable8 />
         </div>
       </View>
     </>
