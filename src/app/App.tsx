@@ -2,12 +2,11 @@ import React from 'react';
 import { defaultTheme, Grid, Provider } from '@adobe/react-spectrum';
 
 import { Content } from './Content';
-import { Table8 } from '../t8/Table8';
+
 export function App() {
   return (
     <Provider theme={defaultTheme}>
-      <Table8 />
-      {/* <Grid
+      <Grid
         areas={['header', 'content', 'footer']}
         columns={['3fr']}
         rows={['size-900', 'auto']}
@@ -15,7 +14,7 @@ export function App() {
         gap='size-100'
       >
         <Content />
-      </Grid> */}
+      </Grid>
     </Provider>
   );
 }

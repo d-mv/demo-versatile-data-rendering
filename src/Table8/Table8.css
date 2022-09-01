@@ -3,27 +3,10 @@ html {
   font-size: 14px;
 }
 
-.container {
-  border: 1px solid lightgray;
-  height: 500px;
-  max-width: 900px !important;
-  overflow: auto;
-}
-
 table {
   border: 1px solid lightgray;
-
-  font-family: arial, sans-serif;
-  table-layout: fixed;
-  width: 100%;
   border-spacing: 0;
-}
-
-thead {
-  background: lightgray;
-  margin: 0;
-  position: sticky;
-  top: 0;
+  row-gap: 0;
 }
 
 tbody {
@@ -38,6 +21,12 @@ th {
 
 tfoot {
   color: gray;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background-color: white;
 }
 
 tfoot th {
@@ -69,4 +58,21 @@ tfoot th {
   *:hover > .resizer {
     opacity: 1;
   }
+}
+
+.container {
+  border: 1px solid lightgray;
+  height: 500px;
+  /* max-width: 900px !important; */
+  overflow: auto;
+}
+
+.xxx {
+  /* width: 1200px; */
+  display: flex;
+  /* overflow: scroll; */
+}
+
+.sub-cont {
+  width: max-content;
 }
