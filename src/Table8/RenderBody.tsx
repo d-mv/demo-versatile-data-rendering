@@ -1,13 +1,8 @@
-import React, {
-  MutableRefObject,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from 'react';
-import { flexRender, Row } from '@tanstack/react-table';
+import React from 'react';
+import { Row } from '@tanstack/react-table';
+
 import { Person } from './makeData';
-import { VariableSizeGrid as Grid, VariableSizeGrid } from 'react-window';
+import { VariableSizeGrid as Grid } from 'react-window';
 import { COLUMNS } from './data';
 
 export interface RenderBodyProps {
@@ -16,10 +11,6 @@ export interface RenderBodyProps {
 
 export function RenderBody({ rows }: RenderBodyProps) {
   const Cell = ({ columnIndex, rowIndex, style }: Record<string, any>) => {
-    // eslint-disable-next-line no-console
-    console.log(
-      rows[rowIndex]?.getVisibleCells()[columnIndex]?.column.getSize()
-    );
     return (
       <div
         style={{
@@ -34,9 +25,6 @@ export function RenderBody({ rows }: RenderBodyProps) {
     );
   };
   function getColumn(index: number) {
-    // console.log(index, rows[0]?.getVisibleCells()[index]?.column.getSize());
-    // eslint-disable-next-line no-console
-    // console.log(width[index]);
     return rows[0]?.getVisibleCells()[index]?.column.getSize();
   }
 

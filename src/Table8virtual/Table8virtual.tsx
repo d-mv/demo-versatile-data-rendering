@@ -3,9 +3,10 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { COLUMNS } from './data';
 import { makeData } from './makeData';
+import { RenderBody } from './RenderBody';
 import './Table8virtual.css';
 export function Table8virtual() {
   const data = useMemo(() => makeData(10), []);
@@ -61,27 +62,7 @@ export function Table8virtual() {
                 </tr>
               ))}
             </thead>
-            <tbody>
-              {table.getGroupedRowModel().rows.map((row) => {
-                return (
-                  <tr key={row.id}>
-                    {row.getVisibleCells().map((cell) => {
-                      return (
-                        <td
-                          key={cell.id}
-                          style={{ width: cell.column.getSize() }}
-                        >
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                );
-              })}
-            </tbody>
+            <RenderBody table={table} />
           </table>
         </div>
         <div className='h-4' />

@@ -1,0 +1,6 @@
+.cell {
+  padding: 0.5rem 1rem;
+  position: relative;
+  border: 1px solid #000000aa;
+  /* transition: all 0.112s ease-in-out; */
+}

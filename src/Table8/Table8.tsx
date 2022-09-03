@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import './Table8.css';
 
 import {
@@ -11,7 +11,7 @@ import { COLUMNS } from './data';
 import { useVirtual } from 'react-virtual';
 
 export function Table8() {
-  const data = React.useMemo(() => makeData(2000), []);
+  const data = useMemo(() => makeData(2000), []);
 
   const table = useReactTable({
     data,
@@ -24,7 +24,7 @@ export function Table8() {
     debugColumns: true,
   });
 
-  const tableContainerRef = React.useRef<HTMLDivElement>(null);
+  const tableContainerRef = useRef<HTMLDivElement>(null);
 
   const { rows } = table.getRowModel();
   const rowVirtualizer = useVirtual({
