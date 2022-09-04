@@ -11,4 +11,5 @@
   flex-flow: column nowrap;
   justify-content: start;
   align-items: start;
+  width: max-content;
 }

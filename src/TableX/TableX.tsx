@@ -14,6 +14,20 @@ interface TableXProps {
 
 export function TableX({ data, scenario }: TableXProps) {
   const [updatedScenario, setUpdatedScenario] = useState(scenario);
+  const [tableWidth, setTableWidth] = useState(
+    calculateMaxWidth(updatedScenario)
+  );
+
+  useEffect(() => {
+    const newTableWidth = calculateMaxWidth(scenario);
+    // provide overscan
+    setTableWidth(newTableWidth + 10);
+  }, [scenario]);
+
+  useEffect(() => {
+    const newTableWidth = calculateMaxWidth(updatedScenario);
+    setTableWidth(newTableWidth);
+  }, [updatedScenario]);
 
   function updateScenario(field: string, value: Partial<TableColumnScenario>) {
     setUpdatedScenario(
@@ -32,7 +46,7 @@ export function TableX({ data, scenario }: TableXProps) {
       <div className={classes.container}>
         <div
           className={classes.table}
-          style={{ width: `${calculateMaxWidth(scenario)}rem` }}
+          //  style={{ width: `${tableWidth}rem` }}
         >
           <Header />
           <Body />

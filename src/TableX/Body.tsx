@@ -36,8 +36,6 @@ export function Body() {
       const RenderComponent = RENDERERS[script.showAs];
 
       const k = `${key}-${path(['id'], row) ?? 0}`;
-      // eslint-disable-next-line no-console
-      console.log(row);
 
       return (
         <Cell

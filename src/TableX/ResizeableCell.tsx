@@ -5,7 +5,8 @@ import React, {
   MouseEvent,
   useEffect,
 } from 'react';
-import { TableColumnScenario } from '../context/tableX.context';
+import { useContextSelector } from 'use-context-selector';
+import { TableColumnScenario, TableXContext } from '../context/tableX.context';
 
 import classes from './ResizeableCell.module.css';
 
@@ -19,6 +20,10 @@ export function ResizableCell({
   id,
   script,
 }: PropsWithChildren<ResizableCellProps>) {
+  const updateScenario = useContextSelector(
+    TableXContext,
+    (context) => context.updateScenario
+  );
   const [scX, setScX] = useState<Record<string, number>>({});
 
   const [cachedWidth, setCachedWidth] = useState<string | number>('');
@@ -44,7 +49,7 @@ export function ResizableCell({
         width =
           current > pre ? width + (current - pre) : width - (pre - current);
 
-        //   updateScenario(key, { width: width / 10 });
+        // updateScenario(key, { width: width / 10 });
         setCachedWidth(`${width / 10}rem`);
         const event = new CustomEvent('updated_width', {
           detail: [key, width / 10],
