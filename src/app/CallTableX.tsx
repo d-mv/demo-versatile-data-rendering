@@ -1,5 +1,5 @@
 import { View } from '@adobe/react-spectrum';
-import React, { PropsWithoutRef } from 'react';
+import React, { PropsWithoutRef, useMemo } from 'react';
 
 import { ShowAs, TableColumnScenario } from '../context/tableX.context';
 import { TableX } from '../TableX';
@@ -28,6 +28,7 @@ export function CallTableX({
   width,
   height,
 }: PropsWithoutRef<CallTableXProps>) {
+  const data = useMemo(() => makeData(qtyOfElements ?? 0), [qtyOfElements]);
   return (
     <View backgroundColor="gray-100" gridArea="content" padding="size-200">
       <div
@@ -39,7 +40,7 @@ export function CallTableX({
           width: `${width}rem`,
         }}
       >
-        <TableX data={makeData(qtyOfElements ?? 0)} scenario={SCENARIO} />
+        <TableX data={data} scenario={SCENARIO} />
       </div>
     </View>
   );

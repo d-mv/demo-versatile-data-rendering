@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { PropsWithoutRef, useMemo, useRef, useState } from 'react';
 import './Table8.css';
 
 import {
@@ -10,8 +10,11 @@ import { makeData } from './makeData';
 import { COLUMNS } from './data';
 import { useVirtual } from 'react-virtual';
 
-export function Table8() {
-  const data = useMemo(() => makeData(2000), []);
+interface Table9Props {
+  qty: number;
+}
+export function Table8({ qty }: PropsWithoutRef<Table9Props>) {
+  const data = useMemo(() => makeData(qty), [qty]);
 
   const table = useReactTable({
     data,
@@ -54,11 +57,11 @@ export function Table8() {
   }
 
   return (
-    <div id='container-id' className='xxx' style={{ width: `${st}px` }}>
-      <div className='sub-cont p-2 block max-w-full overflow-x-scroll overflow-y-hidden'>
-        <div className='h-2' />
-        <div ref={tableContainerRef} id='table-id' className='container'>
-          <table className='w-full '>
+    <div id="container-id" className="xxx" style={{ width: `${st}px` }}>
+      <div className="sub-cont p-2 block max-w-full overflow-x-scroll overflow-y-hidden">
+        <div className="h-2" />
+        <div ref={tableContainerRef} id="table-id" className="container">
+          <table className="w-full ">
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
@@ -128,7 +131,7 @@ export function Table8() {
             </tbody>
           </table>
         </div>
-        <div className='h-4' />
+        <div className="h-4" />
       </div>
     </div>
   );

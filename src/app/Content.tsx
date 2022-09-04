@@ -113,7 +113,7 @@ export function Content() {
         width: `${width}rem`,
       }}
     >
-      <Table8 />
+      <Table8 qty={parseInt(qtyOfElements)} />
     </div>
   );
 
