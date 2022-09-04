@@ -1,17 +1,22 @@
 .cell {
   padding: 0.5rem 1rem;
   position: relative;
-  border: 1px solid #000000aa;
+  border: 1px solid #00000010;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
 }
 
 .resizer {
-  width: 0.2rem;
-  height: 100%;
-  background-color: grey;
+  cursor: grab;
+  width: 0.4rem;
+  height: 80%;
+  background-color: rgb(54, 126, 119);
   position: absolute;
-  right: 0;
-  top: 0;
+  right: -0.2rem;
+  top: 10%;
   opacity: 0;
+  border-radius: 1rem;
 }
 
 .resizer:hover {
