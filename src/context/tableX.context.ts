@@ -4,6 +4,8 @@ import { createContext } from 'use-context-selector';
 export enum ShowAs {
   STRING = 'string',
   ID = 'id',
+  DATE_TIME = 'date_time',
+  NUMBER = 'number',
 }
 
 export interface TableRowScenario {
@@ -16,6 +18,7 @@ export interface TableColumnScenario {
   style?: CSSProperties;
   row?: Partial<TableRowScenario>;
   width: number;
+  type?: string; // custom sub-types for renders
 }
 
 export interface TableXContextType {

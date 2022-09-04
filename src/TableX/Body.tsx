@@ -5,7 +5,7 @@ import {
   TableXCellContext,
   TableXContext,
 } from '../context/tableX.context';
-import { Id, Text } from './renderers';
+import { DateTime, Id, Numbers, Text } from './renderers';
 import { makeMatchObject, map } from '../tools';
 import classes from './Body.module.css';
 import { Cell } from './Cell';
@@ -15,6 +15,8 @@ const RENDERERS = makeMatchObject(
   {
     [ShowAs.ID]: Id,
     [ShowAs.STRING]: Text,
+    [ShowAs.DATE_TIME]: DateTime,
+    [ShowAs.NUMBER]: Numbers,
   },
   () => null
 );
@@ -34,6 +36,8 @@ export function Body() {
       const RenderComponent = RENDERERS[script.showAs];
 
       const k = `${key}-${path(['id'], row) ?? 0}`;
+      // eslint-disable-next-line no-console
+      console.log(row);
 
       return (
         <Cell

@@ -3,13 +3,19 @@ import { useContextSelector } from 'use-context-selector';
 
 import { TableXCellContext } from '../../context/tableX.context';
 
-export function Text() {
+export function DateTime() {
   const value = useContextSelector(
     TableXCellContext,
     (context) => context.value
   );
 
-  if (typeof value !== 'string') return null;
+  if (!(value instanceof Date)) return null;
 
-  return <span>{value}</span>;
+  return (
+    <span>
+      {Intl.DateTimeFormat('en-US', {
+        dateStyle: 'medium',
+      }).format(value)}{' '}
+    </span>
+  );
 }
