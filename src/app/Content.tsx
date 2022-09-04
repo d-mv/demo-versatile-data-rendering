@@ -19,7 +19,8 @@ let interval: NodeJS.Timer | undefined;
 export function Content() {
   const [data, setData] = useState(generateData());
   const [selectedContent, setSelectedContent] = useState(3);
-  const [width, setWidth] = useState('100');
+  const [width, setWidth] = useState('80');
+  const [height, setHeight] = useState('50');
 
   const [qtyOfElements, setQtyOfElements] = useState('100');
   const [qtyErrorMessage, setQtyErrorMessage] = useState('');
@@ -62,8 +63,11 @@ export function Content() {
     if (selectedContent !== 3) setSelectedContent(3);
   }
 
-  function handleChange(s: string) {
-    setWidth(s);
+  function handleChange(entity: 'height' | 'width') {
+    return function call(v: string) {
+      if (entity === 'height') setHeight(v);
+      else setWidth(v);
+    };
   }
 
   const handleIntervalControl = useCallback((onOff = true, int = 2000) => {
@@ -116,6 +120,7 @@ export function Content() {
   const renderTableX = () => (
     <CallTableX
       qtyOfElements={parseInt(qtyOfElements)}
+      height={parseInt(height)}
       width={parseInt(width)}
     />
   );
@@ -140,9 +145,15 @@ export function Content() {
     return (
       <Flex direction="row" alignItems="start" justifyContent="start">
         <TextField
-          label="Window width"
+          label="View width, rem"
           value={width}
-          onChange={handleChange}
+          onChange={handleChange('width')}
+          marginEnd="1rem"
+        />
+        <TextField
+          label="View height, rem"
+          value={height}
+          onChange={handleChange('height')}
           marginEnd="1rem"
         />
         <TextField

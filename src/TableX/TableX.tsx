@@ -5,6 +5,7 @@ import { TableColumnScenario, TableXContext } from '../context/tableX.context';
 import { Body } from './Body';
 import { Header } from './Header';
 import classes from './TableX.module.css';
+import { calculateMaxWidth } from './tools';
 
 interface TableXProps {
   data: Record<string, unknown>[];
@@ -29,8 +30,13 @@ export function TableX({ data, scenario }: TableXProps) {
       }}
     >
       <div className={classes.container}>
-        <Header />
-        <Body />
+        <div
+          className={classes.table}
+          style={{ width: `${calculateMaxWidth(scenario)}rem` }}
+        >
+          <Header />
+          <Body />
+        </div>
       </div>
     </TableXContext.Provider>
   );

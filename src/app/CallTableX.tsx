@@ -20,11 +20,13 @@ const SCENARIO: Record<string, TableColumnScenario> = {
 interface CallTableXProps {
   qtyOfElements: number;
   width: number;
+  height: number;
 }
 
 export function CallTableX({
   qtyOfElements,
   width,
+  height,
 }: PropsWithoutRef<CallTableXProps>) {
   return (
     <View backgroundColor="gray-100" gridArea="content" padding="size-200">
@@ -33,9 +35,7 @@ export function CallTableX({
         style={{
           display: 'flex',
           position: 'relative',
-          height: '100%',
-          overflowX: 'scroll',
-          overflowY: 'hidden',
+          height: `${height}rem`,
           width: `${width}rem`,
         }}
       >
