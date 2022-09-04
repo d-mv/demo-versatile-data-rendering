@@ -1,7 +1,7 @@
 .cell {
   padding: 0.5rem 1rem;
   position: relative;
-  border: 1px solid #000000aa;
+  border: 1px solid #00000010;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

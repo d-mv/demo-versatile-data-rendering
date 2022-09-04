@@ -2,6 +2,7 @@ import React from 'react';
 import { useContextSelector } from 'use-context-selector';
 
 import { TableXCellContext } from '../../context/tableX.context';
+import classes from './DateTime.module.css';
 
 export function DateTime() {
   const value = useContextSelector(
@@ -12,10 +13,10 @@ export function DateTime() {
   if (!(value instanceof Date)) return null;
 
   return (
-    <span>
+    <div className={classes.container}>
       {Intl.DateTimeFormat('en-US', {
         dateStyle: 'medium',
-      }).format(value)}{' '}
-    </span>
+      }).format(value)}
+    </div>
   );
 }

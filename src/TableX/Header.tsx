@@ -4,6 +4,7 @@ import { useContextSelector } from 'use-context-selector';
 import { TableColumnScenario, TableXContext } from '../context/tableX.context';
 import { map } from '../tools';
 import classes from './Header.module.css';
+import { HeaderCell } from './renderers';
 import { ResizableCell } from './ResizeableCell';
 
 export function Header() {
@@ -17,7 +18,7 @@ export function Header() {
   function renderHeaderRow([key, value]: HeaderRowItem) {
     return (
       <ResizableCell id={key} key={key} script={value}>
-        {key}
+        <HeaderCell>{scenario[key].title}</HeaderCell>
       </ResizableCell>
     );
   }

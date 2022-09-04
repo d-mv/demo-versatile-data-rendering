@@ -7,14 +7,30 @@ import { makeData } from '../TableX/makeData';
 import classes from './App.module.css';
 
 const SCENARIO: Record<string, TableColumnScenario> = {
-  id: { order: 1, showAs: ShowAs.ID, width: 14 },
-  firstName: { order: 2, showAs: ShowAs.STRING, width: 10 },
-  lastName: { order: 3, showAs: ShowAs.STRING, width: 10 },
-  age: { order: 4, showAs: ShowAs.NUMBER, width: 5 },
-  visits: { order: 5, showAs: ShowAs.NUMBER, width: 8 },
-  progress: { order: 6, showAs: ShowAs.NUMBER, width: 8, type: 'percent' },
-  status: { order: 7, showAs: ShowAs.STRING, width: 15 },
-  createdAt: { order: 8, showAs: ShowAs.DATE_TIME, width: 15 },
+  id: { order: 1, title: 'ID', showAs: ShowAs.ID, width: 14 },
+  firstName: {
+    order: 2,
+    title: 'First Name',
+    showAs: ShowAs.STRING,
+    width: 10,
+  },
+  lastName: { order: 3, title: 'Last Name', showAs: ShowAs.STRING, width: 10 },
+  age: { order: 4, title: 'Age', showAs: ShowAs.NUMBER, width: 5 },
+  visits: { order: 5, title: 'Visits', showAs: ShowAs.NUMBER, width: 8 },
+  progress: {
+    order: 6,
+    title: 'Progress',
+    showAs: ShowAs.NUMBER,
+    width: 8,
+    type: 'percent',
+  },
+  status: { order: 7, title: 'Status', showAs: ShowAs.STRING, width: 15 },
+  createdAt: {
+    order: 8,
+    title: 'Created',
+    showAs: ShowAs.DATE_TIME,
+    width: 15,
+  },
 };
 
 interface CallTableXProps {

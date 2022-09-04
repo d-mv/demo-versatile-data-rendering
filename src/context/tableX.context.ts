@@ -15,6 +15,7 @@ export interface TableRowScenario {
 export interface TableColumnScenario {
   order: number;
   showAs: ShowAs;
+  title: string;
   style?: CSSProperties;
   row?: Partial<TableRowScenario>;
   width: number;

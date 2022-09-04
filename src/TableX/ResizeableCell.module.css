@@ -5,6 +5,8 @@
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
+  z-index: 100;
+  /* transition: all 0.001s ease-in-out; */
 }
 
 .resizer {
@@ -13,12 +15,18 @@
   height: 80%;
   background-color: rgb(54, 126, 119);
   position: absolute;
-  right: -0.2rem;
+  right: -0.3rem;
   top: 10%;
   opacity: 0;
   border-radius: 1rem;
+  transition: all 0.112s ease-in-out;
+  z-index: 10000;
 }
 
 .resizer:hover {
+  opacity: 1;
+}
+
+.resizer:active {
   opacity: 1;
 }

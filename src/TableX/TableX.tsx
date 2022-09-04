@@ -6,7 +6,7 @@ import { TableColumnScenario, TableXContext } from '../context/tableX.context';
 import { Body } from './Body';
 import { Header } from './Header';
 import classes from './TableX.module.css';
-import { calculateMaxWidth } from './tools';
+import { calculateMaxWidth, sortedScenario } from './tools';
 
 interface TableXProps {
   data: Record<string, unknown>[];
@@ -14,7 +14,9 @@ interface TableXProps {
 }
 
 export function TableX({ data, scenario }: TableXProps) {
-  const [updatedScenario, setUpdatedScenario] = useState(scenario);
+  const [updatedScenario, setUpdatedScenario] = useState(
+    sortedScenario(scenario)
+  );
   const [tableWidth, setTableWidth] = useState(
     calculateMaxWidth(updatedScenario)
   );

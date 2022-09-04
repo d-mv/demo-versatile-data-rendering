@@ -17,6 +17,7 @@ specifiers:
   '@types/react-window': ^1.8.5
   '@types/throttle-debounce': ^5.0.0
   buffer: ^6.0.3
+  clsx: ^1.2.1
   debounce: ^1.2.1
   faker: ^5.5.3
   nanoid: ^4.0.0
@@ -50,6 +51,7 @@ dependencies:
   '@types/react-window': 1.8.5
   '@types/throttle-debounce': 5.0.0
   buffer: 6.0.3
+  clsx: 1.2.1
   debounce: 1.2.1
   faker: 5.5.3
   nanoid: 4.0.0

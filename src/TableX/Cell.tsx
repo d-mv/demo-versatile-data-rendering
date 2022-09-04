@@ -4,7 +4,6 @@ import React, {
   PropsWithChildren,
   useCallback,
   useEffect,
-  useRef,
   useState,
 } from 'react';
 
@@ -35,12 +34,10 @@ export function Cell({
   const handleUpdateWidth = useCallback(
     (e: Event) => {
       if ('detail' in e) {
-        const newWidth = path(['detail'], e) as [string, number];
+        const [columnId, width] = path(['detail'], e) as [string, number];
 
-        if (newWidth[0] === id) {
-          if (element)
-            element.setAttribute('style', `width: ${newWidth[1]}rem`);
-          //setCachedWidth(`${newWidth[1]}rem`);
+        if (columnId === id) {
+          if (element) element.setAttribute('style', `width: ${width}rem`);
         }
       }
     },
@@ -48,6 +45,7 @@ export function Cell({
   );
 
   useEffect(() => {
+    // subscribe to the width update events
     document.addEventListener('updated_width', handleUpdateWidth);
     return () => {
       document.removeEventListener('updated_width', handleUpdateWidth);
