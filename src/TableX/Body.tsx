@@ -33,10 +33,16 @@ export function Body() {
       const script = scenario[key];
       const RenderComponent = RENDERERS[script.showAs];
 
-      const k = `${key}-${path(['id'], row[key]) ?? 0}`;
+      const k = `${key}-${path(['id'], row) ?? 0}`;
 
       return (
-        <Cell key={k} id={key} style={script.style} width={script.width}>
+        <Cell
+          key={k}
+          id={key}
+          rowId={path(['id'], row)}
+          style={script.style}
+          width={script.width}
+        >
           <TableXCellContext.Provider value={{ value: row[key], script, key }}>
             <Suspense key={key} fallback={<span>Loading...</span>}>
               <RenderComponent />

@@ -21,7 +21,7 @@ export function Content() {
   const [selectedContent, setSelectedContent] = useState(3);
   const [width, setWidth] = useState('100');
 
-  const [qtyOfElements, setQtyOfElements] = useState('10');
+  const [qtyOfElements, setQtyOfElements] = useState('100');
   const [qtyErrorMessage, setQtyErrorMessage] = useState('');
 
   function handleQtyChange(s: string) {

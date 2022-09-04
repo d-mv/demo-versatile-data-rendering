@@ -4,6 +4,7 @@ import React, {
   PropsWithChildren,
   useCallback,
   useEffect,
+  useRef,
   useState,
 } from 'react';
 
@@ -13,14 +14,19 @@ interface CellProps {
   style: CSSProperties;
   id: string;
   width: number;
+  rowId: string;
 }
 export function Cell({
+  rowId,
   id,
   children,
   style,
   width,
 }: PropsWithChildren<Partial<CellProps>>) {
   const [cachedWidth, setCachedWidth] = useState<string | number>('');
+
+  const comboId = `${id}-${rowId}`;
+  const element = document.getElementById(comboId);
 
   useEffect(() => {
     if (width && !cachedWidth) setCachedWidth(`${width}rem`);
@@ -31,10 +37,14 @@ export function Cell({
       if ('detail' in e) {
         const newWidth = path(['detail'], e) as [string, number];
 
-        if (newWidth[0] === id) setCachedWidth(`${newWidth[1]}rem`);
+        if (newWidth[0] === id) {
+          if (element)
+            element.setAttribute('style', `width: ${newWidth[1]}rem`);
+          //setCachedWidth(`${newWidth[1]}rem`);
+        }
       }
     },
-    [id]
+    [element, id]
   );
 
   useEffect(() => {
@@ -47,6 +57,7 @@ export function Cell({
   return (
     <div
       key={id}
+      id={comboId}
       className={classes.cell}
       style={{ ...style, width: cachedWidth }}
     >

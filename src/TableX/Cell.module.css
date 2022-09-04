@@ -2,5 +2,8 @@
   padding: 0.5rem 1rem;
   position: relative;
   border: 1px solid #000000aa;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   /* transition: all 0.112s ease-in-out; */
 }
