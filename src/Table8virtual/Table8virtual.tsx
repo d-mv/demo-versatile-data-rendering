@@ -3,7 +3,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { COLUMNS } from './data';
 import { makeData } from './makeData';
 import { RenderBody } from './RenderBody';
@@ -23,11 +23,11 @@ export function Table8virtual() {
   });
 
   return (
-    <div id='container-id' className='xxx'>
-      <div className='sub-cont p-2 block max-w-full overflow-x-scroll overflow-y-hidden'>
-        <div className='h-2' />
-        <div id='table-id' className='container'>
-          <table className='w-full '>
+    <div id="container-id" className="xxx">
+      <div className="sub-cont p-2 block max-w-full overflow-x-scroll overflow-y-hidden">
+        <div className="h-2" />
+        <div id="table-id" className="container">
+          <table className="w-full ">
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
                 <tr key={headerGroup.id}>
@@ -65,7 +65,7 @@ export function Table8virtual() {
             <RenderBody table={table} />
           </table>
         </div>
-        <div className='h-4' />
+        <div className="h-4" />
       </div>
     </div>
   );
