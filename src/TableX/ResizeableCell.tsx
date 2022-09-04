@@ -49,7 +49,7 @@ export function ResizableCell({
         width =
           current > pre ? width + (current - pre) : width - (pre - current);
 
-        // updateScenario(key, { width: width / 10 });
+        updateScenario(key, { width: width / 10 });
         setCachedWidth(`${width / 10}rem`);
         const event = new CustomEvent('updated_width', {
           detail: [key, width / 10],

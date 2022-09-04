@@ -1,5 +1,6 @@
 import { assoc } from 'ramda';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { debounce } from 'throttle-debounce';
 import { useContextSelector } from 'use-context-selector';
 import { TableColumnScenario, TableXContext } from '../context/tableX.context';
 import { Body } from './Body';
@@ -29,8 +30,9 @@ export function TableX({ data, scenario }: TableXProps) {
     setTableWidth(newTableWidth);
   }, [updatedScenario]);
 
+  const debounced = debounce(500, setUpdatedScenario);
   function updateScenario(field: string, value: Partial<TableColumnScenario>) {
-    setUpdatedScenario(
+    debounced(
       assoc(field, { ...updatedScenario[field], ...value }, updatedScenario)
     );
   }
@@ -44,10 +46,7 @@ export function TableX({ data, scenario }: TableXProps) {
       }}
     >
       <div className={classes.container}>
-        <div
-          className={classes.table}
-          //  style={{ width: `${tableWidth}rem` }}
-        >
+        <div id="tablex" className={classes.table}>
           <Header />
           <Body />
         </div>

@@ -1,5 +1,8 @@
-import React, { Suspense } from 'react';
+import React, { CSSProperties, Suspense } from 'react';
+import { path } from 'ramda';
+import { FixedSizeList } from 'react-window';
 import { useContextSelector } from 'use-context-selector';
+
 import {
   ShowAs,
   TableXCellContext,
@@ -9,7 +12,6 @@ import { DateTime, Id, Numbers, Text } from './renderers';
 import { makeMatchObject, map } from '../tools';
 import classes from './Body.module.css';
 import { Cell } from './Cell';
-import { path } from 'ramda';
 
 const RENDERERS = makeMatchObject(
   {
@@ -20,6 +22,7 @@ const RENDERERS = makeMatchObject(
   },
   () => null
 );
+
 export function Body() {
   const { data, scenario, indexKey } = useContextSelector(
     TableXContext,
@@ -55,14 +58,35 @@ export function Body() {
     };
   }
 
-  function renderRow(row: Record<string, unknown>, index: number) {
-    const key = indexKey ? String(row[indexKey]) : index;
+  function renderRow({
+    index,
+    style,
+  }: {
+    index: number;
+    style: CSSProperties;
+  }) {
+    const key = indexKey ? String(data[index][indexKey]) : index;
+
     return (
-      <div key={key} className={classes.row} style={scenario.row?.style}>
-        {map(Object.keys(scenario), renderCell(row))}
+      <div
+        key={key}
+        className={classes.row}
+        style={{ ...scenario.row?.style, ...style }}
+      >
+        {map(Object.keys(scenario), renderCell(data[index]))}
       </div>
     );
   }
 
-  return <div className={classes.container}>{map(data, renderRow)}</div>;
+  return (
+    <FixedSizeList
+      height={500 - 33}
+      itemCount={data.length}
+      itemSize={33}
+      width="100%"
+      overscanCount={50}
+    >
+      {renderRow}
+    </FixedSizeList>
+  );
 }
